@@ -12,12 +12,12 @@ def getdata(name):
     datadatereg = re.compile(r'data-date="(.*?)" data-level')
     #datacountreg = re.compile(r'data-count="(.*?)" data-date')
     datadate = datadatereg.findall(data)
-    #datacount = datacountreg.findall(data)
-    #datacount = list(map(int, datacount))
-    #contributions = sum(datacount)
+#     datacount = datacountreg.findall(data)
+#     datacount = list(map(int, datacount))
+#     contributions = sum(datacount)
     datalist = []
     for index, item in enumerate(datadate):
-        #itemlist = {"date": item, "count": datacount[index]}
+#         itemlist = {"date": item, "count": datacount[index]}
         itemlist = {"date": item, "count": 0}
         datalist.append(itemlist)
     datalistsplit = list_split(datalist, 7)
