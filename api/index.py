@@ -12,26 +12,15 @@ def list_split(items, n):
 def getdata(name):
     gitpage = requests.get("https://github.com/" + name)
     data = gitpage.text
-    # print('---------------------------------------')
-#     print(data)
-#     print('---------------------------------------')
     datadatereg = re.compile(r'data-date="(.*?)" data-level')
-    # datacountreg = re.compile(r'data-count="(.*?)" data-date')
-    # datacountreg = re.compile(r'>"(.*?)" contribution on')
-    datacountreg = re.compile(r'(\d+)\s+contributio')
-    datacountreg = re.compile(r'ry="2">(.+?) contributions')
+    datacountreg = re.compile(r'ry="2">(.+?) contributio')
     datadate = datadatereg.findall(data)
-    print(datadate)
- 
-    datacount = datacountreg.findall(data)
-
-    datacount = [x if x !='No' else '0' for x in datacount]
-    print(datacount)  
     
+    datacount = datacountreg.findall(data)
+    datacount = [x if x !='No' else '0' for x in datacount]
     datacount = list(map(int, datacount))
-    print(datacount)
+
     contributions = sum(datacount)
-    print(contributions)
     datalist = []
 
     for index, item in enumerate(datadate):
