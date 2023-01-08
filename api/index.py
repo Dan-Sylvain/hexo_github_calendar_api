@@ -44,30 +44,14 @@ def getdata(name):
     }
     return returndata
     
-
-    
-def findbug():
-    path='https://github.com/api?Dan-Sylvain'
-    print(path)
-    user = path.split('?')[1]
-    print(user)
-    data = getdata(user)
-    print(data)
-   
-  
-getdata('Dan-Sylvain')   
-# findbug()
-        
-    
-    
-# class handler(BaseHTTPRequestHandler):
-#     def do_GET(self):
-#         path = self.path
-#         user = path.split('?')[1]
-#         data = getdata(user)
-#         self.send_response(200)
-#         self.send_header('Access-Control-Allow-Origin', '*')
-#         self.send_header('Content-type', 'application/json')
-#         self.end_headers()
-#         self.wfile.write(json.dumps(data).encode('utf-8'))
-#         return
+class handler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        path = self.path
+        user = path.split('?')[1]
+        data = getdata(user)
+        self.send_response(200)
+        self.send_header('Access-Control-Allow-Origin', '*')
+        self.send_header('Content-type', 'application/json')
+        self.end_headers()
+        self.wfile.write(json.dumps(data).encode('utf-8'))
+        return
