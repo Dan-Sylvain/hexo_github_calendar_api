@@ -10,19 +10,19 @@ def getdata(name):
     gitpage = requests.get("https://github.com/" + name)
     data = gitpage.text
     datadatereg = re.compile(r'data-date="(.*?)" data-level')
-    #datacountreg = re.compile(r'data-count="(.*?)" data-date')
+    datacountreg = re.compile(r'data-count="(.*?)" data-date')
     datadate = datadatereg.findall(data)
-#     datacount = datacountreg.findall(data)
-#     datacount = list(map(int, datacount))
-#     contributions = sum(datacount)
+    datacount = datacountreg.findall(data)
+    datacount = list(map(int, datacount))
+    contributions = sum(datacount)
     datalist = []
     for index, item in enumerate(datadate):
-#         itemlist = {"date": item, "count": datacount[index]}
-        itemlist = {"date": item, "count": 0}
+        itemlist = {"date": item, "count": datacount[index]}
+#         itemlist = {"date": item, "count": 0}
         datalist.append(itemlist)
     datalistsplit = list_split(datalist, 7)
     returndata = {
-#         "total": contributions,
+        "total": contributions,
         "total": 0,
         "contributions": datalistsplit
     }
